@@ -18,6 +18,7 @@ public class Cell {
     private int i;
     private int j;
     private boolean reveal;
+    private MouseHandleClick mouseHandleClick;
 
     public Cell(int i, int j) {
         this.i = i;
@@ -30,17 +31,13 @@ public class Cell {
         this.bombCountLabel = new JLabel("");
         this.panel.add(bombCountLabel);
         this.message = message;
+        this.mouseHandleClick = new MouseHandleClick(this);
 
         // Add the MouseListener here
         this.panel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 1) {
-                    reveal();
-                }
-                if (e.getClickCount() == 2) {
-                    mark();
-                }
+                mouseHandleClick.handleClick(e);
             }
         });
     }
@@ -65,7 +62,7 @@ public class Cell {
         this.panel.setBackground(Color.GREEN);
     }
 
-    private void reveal() {
+    public void reveal() {
         if (isBomb) {
             // Show bomb visually and handle game over condition
             bombCountLabel.setText("B");
@@ -78,5 +75,4 @@ public class Cell {
             this.panel.setBackground(Color.GRAY);
         }
     }
-
 }
