@@ -7,13 +7,16 @@ public class Mode {
     public static void get(String mode, JFrame frame) {
         switch (mode) {
             case "easy":
-                Grid.easy(frame, 8, 8);
+                Grid gridEasy = new Grid(8, 8);
+                gridEasy.easy(gridEasy.gridPanel, frame);
                 break;
             case "medium":
-                Grid.medium(frame, 16, 16);
+                Grid gridMedium = new Grid(16, 16);
+                gridMedium.medium(gridMedium.gridPanel, frame);
                 break;
             case "hard":
-                Grid.hard(frame, 16, 32);
+                Grid gridHard = new Grid(16, 32);
+                gridHard.hard(gridHard.gridPanel, frame);
                 break;
 
             default:
